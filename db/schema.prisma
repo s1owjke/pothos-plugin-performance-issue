@@ -1,0 +1,802 @@
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native"]
+}
+
+generator pothos {
+  provider = "prisma-pothos-types"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model BananaQueue {
+  id                  String             @id
+  createdAt           DateTime
+  updatedAt           DateTime           @updatedAt
+  singularityReport   SingularityReport  @relation(fields: [singularityReportId], references: [id])
+  singularityReportId String
+  unstableFrequency   UnstableFrequency? @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId String?
+}
+
+model GhostRecord {
+  id                   String                @id
+  createdAt            DateTime
+  updatedAt            DateTime              @updatedAt
+  artificialPotato     ArtificialPotato?
+  classifiedSilliness  ClassifiedSilliness?
+  hypotheticalRevenues HypotheticalRevenue[]
+  portalIndex          PortalIndex?
+  rejectedTheories     RejectedTheory[]
+  schrodingerUser      SchrodingerUser?
+  symphonyChart        SymphonyChart?
+  thresholdManifest    ThresholdManifest?    @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId  String?
+  vortexReports        VortexReport[]
+}
+
+model UnfinishedSymphony {
+  id                  String             @id
+  createdAt           DateTime
+  updatedAt           DateTime           @updatedAt
+  unstableFrequency   UnstableFrequency? @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId String?
+}
+
+model QuantumInvoice {
+  id                  String             @id
+  createdAt           DateTime
+  updatedAt           DateTime           @updatedAt
+  unstableFrequency   UnstableFrequency? @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId String?
+}
+
+model HalfBakedIdea {
+  id                  String            @id
+  createdAt           DateTime
+  updatedAt           DateTime          @updatedAt
+  symphonyChart       SymphonyChart     @relation(fields: [symphonyChartId], references: [id])
+  symphonyChartId     String
+  thresholdManifest   ThresholdManifest @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId String
+
+  @@unique([symphonyChartId, thresholdManifestId])
+}
+
+model TimeTravelLog {
+  id                  String               @id
+  createdAt           DateTime
+  updatedAt           DateTime             @updatedAt
+  hypotheticalRevenue HypotheticalRevenue?
+  thresholdManifest   ThresholdManifest?
+  unstableFrequency   UnstableFrequency?   @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId String?
+  vortexReport        VortexReport?
+}
+
+model OverdueRevolution {
+  id                String           @id
+  createdAt         DateTime
+  updatedAt         DateTime         @updatedAt
+  gravityOverride   GravityOverride  @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId String
+  pocketUniverses   PocketUniverse[] @relation()
+}
+
+model EndlessLoop {
+  id                String           @id
+  createdAt         DateTime
+  updatedAt         DateTime         @updatedAt
+  gravityOverride   GravityOverride  @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId String
+  pocketUniverses   PocketUniverse[] @relation()
+}
+
+model PocketUniverse {
+  id                 String              @id
+  createdAt          DateTime
+  updatedAt          DateTime            @updatedAt
+  endlessLoops       EndlessLoop[]       @relation()
+  gravityOverride    GravityOverride     @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId  String
+  overdueRevolutions OverdueRevolution[] @relation()
+}
+
+model MetaphysicalReceipt {
+  id                  String             @id
+  createdAt           DateTime
+  updatedAt           DateTime           @updatedAt
+  thresholdManifest   ThresholdManifest? @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId String?            @unique
+}
+
+model InfiniteUndo {
+  id                  String               @id
+  createdAt           DateTime
+  updatedAt           DateTime             @updatedAt
+  hypotheticalRevenue HypotheticalRevenue?
+  thresholdManifest   ThresholdManifest?
+  vortexReport        VortexReport?
+}
+
+model AlternativeFact {
+  id                  String            @id
+  createdAt           DateTime
+  updatedAt           DateTime          @updatedAt
+  glitchRegistry      GlitchRegistry?   @relation(fields: [glitchRegistryId], references: [id])
+  glitchRegistryId    String?
+  gloriousMistakes    GloriousMistake[]
+  singularityReport   SingularityReport @relation(fields: [singularityReportId], references: [id])
+  singularityReportId String            @unique
+  symphonyChart       SymphonyChart     @relation(fields: [symphonyChartId], references: [id])
+  symphonyChartId     String
+}
+
+model GloriousMistake {
+  id                  String            @id
+  createdAt           DateTime
+  updatedAt           DateTime          @updatedAt
+  alternativeFact     AlternativeFact   @relation(fields: [alternativeFactId], references: [id])
+  alternativeFactId   String
+  thresholdManifest   ThresholdManifest @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId String
+}
+
+model UnassignedDestiny {
+  id                 String              @id
+  createdAt          DateTime
+  updatedAt          DateTime            @updatedAt
+  gravityOverride    GravityOverride?
+  imaginaryFriend    ImaginaryFriend?
+  reverseTransaction ReverseTransaction?
+}
+
+model ForbiddenCheeseburger {
+  id                  String            @id
+  createdAt           DateTime
+  updatedAt           DateTime          @updatedAt
+  staticWhispers      StaticWhisper[]
+  thresholdManifest   ThresholdManifest @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId String
+}
+
+model StaticWhisper {
+  id                      String                @id
+  createdAt               DateTime
+  updatedAt               DateTime              @updatedAt
+  forbiddenCheeseburger   ForbiddenCheeseburger @relation(fields: [forbiddenCheeseburgerId], references: [id])
+  forbiddenCheeseburgerId String
+  thresholdManifest       ThresholdManifest     @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId     String
+}
+
+model ParallelReality {
+  id        String   @id
+  createdAt DateTime
+  updatedAt DateTime @updatedAt
+}
+
+model SymphonyChart {
+  id                     String                  @id
+  createdAt              DateTime
+  updatedAt              DateTime                @updatedAt
+  alternativeFacts       AlternativeFact[]
+  classifiedSillinesses  ClassifiedSilliness[]
+  emotionalSupportTables EmotionalSupportTable[]
+  ghostRecord            GhostRecord?            @relation(fields: [ghostRecordId], references: [id])
+  ghostRecordId          String?                 @unique
+  glitchRegistries       GlitchRegistry[]
+  halfBakedIdeas         HalfBakedIdea[]
+  schrodingerUser        SchrodingerUser?        @relation(fields: [schrodingerUserId], references: [id])
+  schrodingerUserId      String?                 @unique
+  teleportationFailures  TeleportationFailure[]  @relation()
+  thoughtCaches          ThoughtCache[]
+  unstableFrequency      UnstableFrequency?      @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId    String?
+}
+
+model CosmicDebris {
+  id                  String               @id
+  createdAt           DateTime
+  updatedAt           DateTime             @updatedAt
+  hypotheticalRevenue HypotheticalRevenue?
+  thresholdManifest   ThresholdManifest?
+  unstableFrequency   UnstableFrequency?   @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId String?
+  vortexReport        VortexReport?
+}
+
+model SecretSauce {
+  id                  String               @id
+  createdAt           DateTime
+  updatedAt           DateTime             @updatedAt
+  gravityOverride     GravityOverride      @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId   String
+  recursiveRecursions RecursiveRecursion[] @relation()
+}
+
+model HyperlinkedUnicorn {
+  id                  String               @id
+  createdAt           DateTime
+  updatedAt           DateTime             @updatedAt
+  gravityOverride     GravityOverride      @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId   String
+  recursiveRecursions RecursiveRecursion[] @relation()
+}
+
+model RecursiveRecursion {
+  id                  String               @id
+  createdAt           DateTime
+  updatedAt           DateTime             @updatedAt
+  gravityOverride     GravityOverride      @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId   String
+  hyperlinkedUnicorns HyperlinkedUnicorn[] @relation()
+  secretSauces        SecretSauce[]        @relation()
+}
+
+model ThoughtCache {
+  id                String          @id
+  createdAt         DateTime
+  updatedAt         DateTime        @updatedAt
+  schrodingerUser   SchrodingerUser @relation(fields: [schrodingerUserId], references: [id])
+  schrodingerUserId String
+  symphonyChart     SymphonyChart   @relation(fields: [symphonyChartId], references: [id])
+  symphonyChartId   String
+}
+
+model ThresholdManifest {
+  id                      String                  @id
+  createdAt               DateTime
+  updatedAt               DateTime                @updatedAt
+  classifiedSillinesses   ClassifiedSilliness[]
+  conspiracyDrafts        ConspiracyDraft[]
+  cosmicDebris            CosmicDebris?           @relation(fields: [cosmicDebrisId], references: [id])
+  cosmicDebrisId          String?                 @unique
+  dimensionalBackups      DimensionalBackup[]
+  forbiddenCheeseburgers  ForbiddenCheeseburger[]
+  ghostRecordId           String?                 @unique
+  ghostRecords            GhostRecord[]
+  glitchRegisties         GlitchRegistry[]        @relation()
+  gloriousMistakes        GloriousMistake[]
+  gravityOverrides        GravityOverride[]
+  halfBakedIdeas          HalfBakedIdea[]
+  hypotheticalRevenue     HypotheticalRevenue?    @relation(fields: [hypotheticalRevenueId], references: [id])
+  hypotheticalRevenueId   String?
+  infiniteScrollLog       InfiniteScrollLog[]     @relation()
+  infiniteUndo            InfiniteUndo?           @relation(fields: [infiniteUndoId], references: [id])
+  infiniteUndoId          String?                 @unique
+  metaphysicalReceipt     MetaphysicalReceipt?
+  pendingDisasters        PendingDisaster[]
+  realmDirectory          RealmDirectory?         @relation(fields: [realmDirectoryId], references: [id])
+  realmDirectoryId        String?                 @unique
+  rejectedTheories        RejectedTheory[]
+  staticWhispers          StaticWhisper[]
+  suspiciousTimestamp     SuspiciousTimestamp?    @relation(fields: [suspiciousTimestampId], references: [id])
+  suspiciousTimestampId   String?                 @unique
+  teleportationFailures   TeleportationFailure[]  @relation()
+  timeTravelLog           TimeTravelLog?          @relation(fields: [timeTravelLogId], references: [id])
+  timeTravelLogId         String?                 @unique
+  unnecessaryPermission   UnnecessaryPermission?  @relation(fields: [unnecessaryPermissionId], references: [id])
+  unnecessaryPermissionId String?                 @unique
+  unstableFrequency       UnstableFrequency?      @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId     String?
+  vortexReport            VortexReport?           @relation(fields: [vortexReportId], references: [id])
+  vortexReportId          String?
+}
+
+model GravityOverride {
+  id                       String                    @id
+  createdAt                DateTime
+  updatedAt                DateTime                  @updatedAt
+  dimensionalBackup        DimensionalBackup?        @relation(fields: [dimensionalBackupId], references: [id])
+  dimensionalBackupId      String?
+  debuggingHistories       DebuggingHistory[]
+  doomedExperiments        DoomedExperiment[]
+  endlessLoops             EndlessLoop[]
+  hyperlinkedUnicorns      HyperlinkedUnicorn[]
+  imaginaryFriend          ImaginaryFriend?          @relation(fields: [imaginaryFriendId], references: [id])
+  imaginaryFriendId        String?
+  missingContexts          MissingContext[]
+  overdueRevolutions       OverdueRevolution[]
+  pocketUniverses          PocketUniverse[]
+  recursiveRecursions      RecursiveRecursion[]
+  reverseTransaction       ReverseTransaction?       @relation(fields: [reverseTransactionId], references: [id])
+  reverseTransactionId     String?
+  schrodingerUsersToNotify SchrodingerUser[]         @relation()
+  secretSauces             SecretSauce[]
+  sentientMetadatas        SentientMetadata[]
+  spontaneousCombustions   SpontaneousCombustion[]
+  thresholdManifest        ThresholdManifest         @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId      String
+  unassignedDestiny        UnassignedDestiny?        @relation(fields: [unassignedDestinyId], references: [id])
+  unassignedDestinyId      String?                   @unique
+  underappreciatedComments UnderappreciatedComment[]
+  unstableFrequency        UnstableFrequency?        @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId      String?
+}
+
+model DimensionalBackup {
+  id                  String            @id
+  createdAt           DateTime
+  updatedAt           DateTime          @updatedAt
+  gravityOverrides    GravityOverride[]
+  portalIndexes       PortalIndex[]     @relation()
+  schrodingerUser     SchrodingerUser   @relation(fields: [schrodingerUserId], references: [id])
+  schrodingerUserId   String            @unique
+  thresholdManifest   ThresholdManifest @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId String
+}
+
+model UnnecessaryPermission {
+  id                  String               @id
+  createdAt           DateTime
+  updatedAt           DateTime             @updatedAt
+  hypotheticalRevenue HypotheticalRevenue?
+  thresholdManifest   ThresholdManifest?
+  vortexReport        VortexReport?
+}
+
+model RejectedTheory {
+  id                     String             @id
+  createdAt              DateTime
+  updatedAt              DateTime           @updatedAt
+  childRejectedTheories  RejectedTheory[]   @relation("52fef891-5f14-43e1-9f91-84298e39ebb9")
+  ghostRecord            GhostRecord?       @relation(fields: [ghostRecordId], references: [id])
+  ghostRecordId          String?
+  parentRejectedTheory   RejectedTheory?    @relation("52fef891-5f14-43e1-9f91-84298e39ebb9", fields: [parentRejectedTheoryId], references: [id])
+  parentRejectedTheoryId String?
+  portalIndexes          PortalIndex[]      @relation()
+  thresholdManifest      ThresholdManifest? @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId    String?
+}
+
+model UnstableFrequency {
+  id                    String                @id
+  createdAt             DateTime
+  updatedAt             DateTime              @updatedAt
+  artificialPotatoes    ArtificialPotato[]
+  bananaQueues          BananaQueue[]
+  classifiedSillinesses ClassifiedSilliness[]
+  cosmicDebrises        CosmicDebris[]
+  gravityOverrides      GravityOverride[]     @relation()
+  hypotheticalRevenuee  HypotheticalRevenue[]
+  imaginaryFriends      ImaginaryFriend[]     @relation("e5b7e598-6ba0-4dff-bb47-bcc6136495f7")
+  imaginaryFriends2     ImaginaryFriend[]     @relation("6753235b-561f-48a9-be3d-3ffd65bdbf4f")
+  pendingDisasters      PendingDisaster[]
+  portalIndexes         PortalIndex[]
+  quantumInvoices       QuantumInvoice[]
+  realmDirectories      RealmDirectory[]
+  reverseTransaction    ReverseTransaction[]  @relation("f0167fca-1c22-49de-b159-f511a7442d05")
+  reverseTransaction2   ReverseTransaction[]  @relation("f6d5f7361-85dc-489b-81db-1d442433a478")
+  symphonyCharts        SymphonyChart[]
+  thresholdManifests    ThresholdManifest[]
+  timeTravelLogs        TimeTravelLog[]
+  unfinishedSymphonies  UnfinishedSymphony[]
+  vortexReports         VortexReport[]
+  wormholeRentals       WormholeRental[]
+}
+
+model PendingDisaster {
+  id                      String                 @id
+  createdAt               DateTime
+  updatedAt               DateTime               @updatedAt
+  emotionalSupportTable   EmotionalSupportTable? @relation(fields: [emotionalSupportTableId], references: [id])
+  emotionalSupportTableId String?
+  glitchRegistry          GlitchRegistry?        @relation(fields: [glitchRegistryId], references: [id])
+  glitchRegistryId        String?
+  thresholdManifest       ThresholdManifest?     @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId     String?
+  unstableFrequency       UnstableFrequency?     @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId     String?
+}
+
+model SingularityReport {
+  id                       String                    @id
+  createdAt                DateTime
+  updatedAt                DateTime                  @updatedAt
+  alternativeFact          AlternativeFact?
+  bananaQueues             BananaQueue[]
+  emotionalSupportTable    EmotionalSupportTable?
+  glitchRegistry           GlitchRegistry?
+  interdimensionalReceipts InterdimensionalReceipt[]
+}
+
+model InterdimensionalReceipt {
+  id                  String            @id
+  createdAt           DateTime
+  updatedAt           DateTime          @updatedAt
+  schrodingerUser     SchrodingerUser   @relation(fields: [schrodingerUserId], references: [id])
+  schrodingerUserId   String
+  singularityReport   SingularityReport @relation(fields: [singularityReportId], references: [id])
+  singularityReportId String
+
+  @@unique([singularityReportId, schrodingerUserId])
+}
+
+model RedundantDuplication {
+  id        String   @id
+  createdAt DateTime
+  updatedAt DateTime @updatedAt
+}
+
+model SignalGrid {
+  id                String          @id
+  createdAt         DateTime
+  updatedAt         DateTime        @updatedAt
+  schrodingerUser   SchrodingerUser @relation(fields: [schrodingerUserId], references: [id])
+  schrodingerUserId String          @unique
+}
+
+model PortalIndex {
+  id                    String                 @id
+  createdAt             DateTime
+  updatedAt             DateTime               @updatedAt
+  classifiedSillinesses ClassifiedSilliness[]
+  dimensionalBackups    DimensionalBackup[]    @relation()
+  ghostRecord           GhostRecord?           @relation(fields: [ghostRecordId], references: [id])
+  ghostRecordId         String?                @unique
+  missingContexts       MissingContext[]
+  rejectedTheories      RejectedTheory[]       @relation()
+  teleportationFailures TeleportationFailure[] @relation()
+  unstableFrequency     UnstableFrequency?     @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId   String?
+}
+
+model RealmDirectory {
+  id                  String               @id
+  createdAt           DateTime
+  updatedAt           DateTime             @updatedAt
+  hypotheticalRevenue HypotheticalRevenue?
+  thresholdManifest   ThresholdManifest?
+  unstableFrequency   UnstableFrequency?   @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId String?
+  vortexReport        VortexReport?
+}
+
+model DoomedExperiment {
+  id                     String                  @id
+  createdAt              DateTime
+  updatedAt              DateTime                @updatedAt
+  gravityOverride        GravityOverride         @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId      String
+  spontaneousCombustions SpontaneousCombustion[] @relation()
+}
+
+model MissingContext {
+  id                     String                  @id
+  createdAt              DateTime
+  updatedAt              DateTime                @updatedAt
+  gravityOverride        GravityOverride         @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId      String
+  portalIndex            PortalIndex?            @relation(fields: [portalIndexId], references: [id])
+  portalIndexId          String?
+  spontaneousCombustions SpontaneousCombustion[]
+}
+
+model UnderappreciatedComment {
+  id                     String                  @id
+  createdAt              DateTime
+  updatedAt              DateTime                @updatedAt
+  gravityOverride        GravityOverride         @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId      String
+  spontaneousCombustions SpontaneousCombustion[] @relation()
+}
+
+model SentientMetadata {
+  id                     String                  @id
+  createdAt              DateTime
+  updatedAt              DateTime                @updatedAt
+  gravityOverride        GravityOverride         @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId      String
+  spontaneousCombustions SpontaneousCombustion[]
+}
+
+model SpontaneousCombustion {
+  id                       String                    @id
+  createdAt                DateTime
+  updatedAt                DateTime                  @updatedAt
+  doomedExperiments        DoomedExperiment[]        @relation()
+  gravityOverride          GravityOverride?          @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId        String?
+  missingContext           MissingContext?           @relation(fields: [missingContextId], references: [id])
+  missingContextId         String?
+  sentientMetadata         SentientMetadata?         @relation(fields: [sentientMetadataId], references: [id])
+  sentientMetadataId       String?
+  symphonyChartId          String?
+  underappreciatedComments UnderappreciatedComment[] @relation()
+}
+
+model ConspiracyDraft {
+  id                    String               @id
+  createdAt             DateTime
+  updatedAt             DateTime             @updatedAt
+  glitchRegistry        GlitchRegistry?      @relation(fields: [glitchRegistryId], references: [id])
+  glitchRegistryId      String?
+  hypotheticalRevenue   HypotheticalRevenue? @relation(fields: [hypotheticalRevenueId], references: [id])
+  hypotheticalRevenueId String?
+  thresholdManifest     ThresholdManifest?   @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId   String?
+  vortexReport          VortexReport?        @relation(fields: [vortexReportId], references: [id])
+  vortexReportId        String?
+}
+
+model UnfinishedPrototype {
+  id                    String              @id
+  createdAt             DateTime
+  updatedAt             DateTime            @updatedAt
+  classifiedSilliness   ClassifiedSilliness @relation(fields: [classifiedSillinessId], references: [id])
+  classifiedSillinessId String
+}
+
+model VortexReport {
+  id                      String                 @id
+  createdAt               DateTime
+  updatedAt               DateTime               @updatedAt
+  conspiracyDrafts        ConspiracyDraft[]
+  cosmicDebris            CosmicDebris?          @relation(fields: [cosmicDebrisId], references: [id])
+  cosmicDebrisId          String?                @unique
+  ghostRecord             GhostRecord?           @relation(fields: [ghostRecordId], references: [id])
+  ghostRecordId           String?
+  hypotheticalRevenue     HypotheticalRevenue?   @relation(fields: [hypotheticalRevenueId], references: [id])
+  hypotheticalRevenueId   String?
+  infiniteUndo            InfiniteUndo?          @relation(fields: [infiniteUndoId], references: [id])
+  infiniteUndoId          String?                @unique
+  realmDirectory          RealmDirectory?        @relation(fields: [realmDirectoryId], references: [id])
+  realmDirectoryId        String?                @unique
+  reverseTransactions     ReverseTransaction[]
+  suspiciousTimestamp     SuspiciousTimestamp?   @relation(fields: [suspiciousTimestampId], references: [id])
+  suspiciousTimestampId   String?                @unique
+  teleportationFailures   TeleportationFailure[]
+  thresholdManifests      ThresholdManifest[]
+  timeTravelLog           TimeTravelLog?         @relation(fields: [timeTravelLogId], references: [id])
+  timeTravelLogId         String?                @unique
+  unnecessaryPermission   UnnecessaryPermission? @relation(fields: [unnecessaryPermissionId], references: [id])
+  unnecessaryPermissionId String?                @unique
+  unstableFrequency       UnstableFrequency?     @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId     String?
+}
+
+model HypotheticalRevenue {
+  id                      String                 @id
+  createdAt               DateTime
+  updatedAt               DateTime               @updatedAt
+  conspiracyDrafts        ConspiracyDraft[]
+  cosmicDebris            CosmicDebris?          @relation(fields: [cosmicDebrisId], references: [id])
+  cosmicDebrisId          String?                @unique
+  ghostRecord             GhostRecord?           @relation(fields: [ghostRecordId], references: [id])
+  ghostRecordId           String?
+  imaginaryFriends        ImaginaryFriend[]
+  infiniteUndo            InfiniteUndo?          @relation(fields: [infiniteUndoId], references: [id])
+  infiniteUndoId          String?                @unique
+  lostAndNeverFounds      LostAndNeverFound[]
+  realmDirectory          RealmDirectory?        @relation(fields: [realmDirectoryId], references: [id])
+  realmDirectoryId        String?                @unique
+  suspiciousTimestamp     SuspiciousTimestamp?   @relation(fields: [suspiciousTimestampId], references: [id])
+  suspiciousTimestampId   String?                @unique
+  thresholdManifests      ThresholdManifest[]
+  timeTravelLog           TimeTravelLog?         @relation(fields: [timeTravelLogId], references: [id])
+  timeTravelLogId         String?                @unique
+  unnecessaryPermission   UnnecessaryPermission? @relation(fields: [unnecessaryPermissionId], references: [id])
+  unnecessaryPermissionId String?                @unique
+  unstableFrequency       UnstableFrequency?     @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId     String?
+  vortexReports           VortexReport[]
+}
+
+model LostAndNeverFound {
+  id                    String              @id
+  createdAt             DateTime
+  updatedAt             DateTime            @updatedAt
+  hypotheticalRevenue   HypotheticalRevenue @relation(fields: [hypotheticalRevenueId], references: [id])
+  hypotheticalRevenueId String
+  imaginaryFriend       ImaginaryFriend[]
+  schrodingerUser       SchrodingerUser     @relation(fields: [schrodingerUserId], references: [id])
+  schrodingerUserId     String              @unique
+}
+
+model ReverseTransaction {
+  id                       String             @id
+  createdAt                DateTime
+  updatedAt                DateTime           @updatedAt
+  gravityOverrides         GravityOverride[]
+  imaginaryFriend          ImaginaryFriend?   @relation(fields: [imaginaryFriendId], references: [id])
+  imaginaryFriendId        String?
+  schrodingerUsersToNotify SchrodingerUser[]  @relation()
+  unassignedDestiny        UnassignedDestiny? @relation(fields: [unassignedDestinyId], references: [id])
+  unassignedDestinyId      String?            @unique
+  unstableFrequency        UnstableFrequency? @relation("f0167fca-1c22-49de-b159-f511a7442d05", fields: [unstableFrequencyId], references: [id])
+  unstableFrequency2       UnstableFrequency? @relation("f6d5f7361-85dc-489b-81db-1d442433a478", fields: [unstableFrequencyId2], references: [id])
+  unstableFrequencyId      String?
+  unstableFrequencyId2     String?
+  vortexReport             VortexReport       @relation(fields: [vortexReportId], references: [id])
+  vortexReportId           String
+}
+
+model TeleportationFailure {
+  id                 String              @id
+  createdAt          DateTime
+  updatedAt          DateTime            @updatedAt
+  portalIndexes      PortalIndex[]       @relation()
+  schrodingerUser    SchrodingerUser     @relation(fields: [schrodingerUserId], references: [id])
+  schrodingerUserId  String              @unique
+  symphonyCharts     SymphonyChart[]     @relation()
+  thresholdManifests ThresholdManifest[] @relation()
+  vortexReport       VortexReport        @relation(fields: [vortexReportId], references: [id])
+  vortexReportId     String
+}
+
+model OverwrittenLegacy {
+  id                      String                @id
+  createdAt               DateTime
+  updatedAt               DateTime              @updatedAt
+  artificialPotato        ArtificialPotato      @relation(fields: [artificialPotatoId], references: [id])
+  artificialPotatoId      String
+  glitchRegistries        GlitchRegistry[]
+  prematureOptimization   PrematureOptimization @relation(fields: [prematureOptimizationId], references: [id])
+  prematureOptimizationId String
+}
+
+model PrematureOptimization {
+  id                  String              @id
+  createdAt           DateTime
+  updatedAt           DateTime            @updatedAt
+  overwrittenLegacies OverwrittenLegacy[]
+}
+
+model InfiniteScrollLog {
+  id                     String                  @id
+  createdAt              DateTime
+  updatedAt              DateTime                @updatedAt
+  emotionalSupportTables EmotionalSupportTable[]
+  schrodingerUser        SchrodingerUser         @relation(fields: [schrodingerUserId], references: [id])
+  schrodingerUserId      String                  @unique
+  thresholdManifest      ThresholdManifest?      @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId    String?
+}
+
+model ClassifiedSilliness {
+  id                   String                @id
+  createdAt            DateTime
+  updatedAt            DateTime              @updatedAt
+  ghostRecord          GhostRecord?          @relation(fields: [ghostRecordId], references: [id])
+  ghostRecordId        String?               @unique
+  portalIndex          PortalIndex?          @relation(fields: [portalIndexId], references: [id])
+  portalIndexId        String?
+  symphonyChart        SymphonyChart         @relation(fields: [symphonyChartId], references: [id])
+  symphonyChartId      String
+  thresholdManifest    ThresholdManifest     @relation(fields: [thresholdManifestId], references: [id])
+  thresholdManifestId  String
+  unfinishedPrototypes UnfinishedPrototype[]
+  unstableFrequency    UnstableFrequency?    @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId  String?
+}
+
+model ImaginaryFriend {
+  id                       String               @id
+  createdAt                DateTime
+  updatedAt                DateTime             @updatedAt
+  gravityOverrides         GravityOverride[]
+  hypotheticalRevenue      HypotheticalRevenue  @relation(fields: [hypotheticalRevenueId], references: [id])
+  hypotheticalRevenueId    String
+  lostAndNeverFound        LostAndNeverFound?   @relation(fields: [lostAndNeverFoundId], references: [id])
+  lostAndNeverFoundId      String?
+  reverseTransactions      ReverseTransaction[]
+  schrodingerUsersToNotify SchrodingerUser[]    @relation()
+  unassignedDestiny        UnassignedDestiny?   @relation(fields: [unassignedDestinyId], references: [id])
+  unassignedDestinyId      String?              @unique
+  unstableFrequency        UnstableFrequency?   @relation("e5b7e598-6ba0-4dff-bb47-bcc6136495f7", fields: [unstableFrequencyId], references: [id])
+  unstableFrequency2       UnstableFrequency?   @relation("6753235b-561f-48a9-be3d-3ffd65bdbf4f", fields: [unstableFrequencyId2], references: [id])
+  unstableFrequencyId      String?
+  unstableFrequencyId2     String?
+}
+
+model DebuggingHistory {
+  id                String          @id
+  createdAt         DateTime
+  updatedAt         DateTime        @updatedAt
+  gravityOverride   GravityOverride @relation(fields: [gravityOverrideId], references: [id])
+  gravityOverrideId String
+}
+
+model WormholeRental {
+  id                  String             @id
+  createdAt           DateTime
+  updatedAt           DateTime           @updatedAt
+  unstableFrequency   UnstableFrequency? @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId String?
+}
+
+model SuspiciousTimestamp {
+  id                  String               @id
+  createdAt           DateTime
+  updatedAt           DateTime             @updatedAt
+  hypotheticalRevenue HypotheticalRevenue?
+  thresholdManifest   ThresholdManifest?
+  vortexReport        VortexReport?
+}
+
+model EmotionalSupportTable {
+  id                  String            @id
+  createdAt           DateTime
+  updatedAt           DateTime          @updatedAt
+  infiniteScrollLog   InfiniteScrollLog @relation(fields: [infiniteScrollLogId], references: [id])
+  infiniteScrollLogId String
+  pendingDisasters    PendingDisaster[]
+  singularityReport   SingularityReport @relation(fields: [singularityReportId], references: [id])
+  singularityReportId String            @unique
+  symphonyChart       SymphonyChart     @relation(fields: [symphonyChartId], references: [id])
+  symphonyChartId     String
+}
+
+model SchrodingerUser {
+  id                       String                    @id
+  createdAt                DateTime
+  updatedAt                DateTime                  @updatedAt
+  dimensionalBackup        DimensionalBackup?
+  echoChamber              EchoChamber?
+  ghostRecord              GhostRecord?              @relation(fields: [ghostRecordId], references: [id])
+  ghostRecordId            String?                   @unique
+  gravityOverrides         GravityOverride[]         @relation()
+  imaginaryFriends         ImaginaryFriend[]         @relation()
+  infiniteScrollLog        InfiniteScrollLog?
+  interdimensionalReceipts InterdimensionalReceipt[]
+  lostAndNeverFound        LostAndNeverFound?
+  reverseTransactions      ReverseTransaction[]      @relation()
+  signalGrid               SignalGrid?
+  symphonyChart            SymphonyChart?
+  teleportationFailure     TeleportationFailure?
+  thoughtCaches            ThoughtCache[]
+}
+
+model GlitchRegistry {
+  id                  String              @id
+  createdAt           DateTime
+  updatedAt           DateTime            @updatedAt
+  alternativeFacts    AlternativeFact[]
+  conspiracyDrafts    ConspiracyDraft[]
+  echoChamber         EchoChamber         @relation(fields: [verifierStaffId], references: [id])
+  overwrittenLegacy   OverwrittenLegacy?  @relation(fields: [overwrittenLegacyId], references: [id])
+  overwrittenLegacyId String?
+  pendingDisasters    PendingDisaster[]
+  singularityReport   SingularityReport   @relation(fields: [singularityReportId], references: [id])
+  singularityReportId String              @unique
+  symphonyChart       SymphonyChart       @relation(fields: [symphonyChartId], references: [id])
+  symphonyChartId     String
+  thresholdManifests  ThresholdManifest[] @relation()
+  verifierStaffId     String
+}
+
+model ArtificialPotato {
+  id                   String                @id
+  createdAt            DateTime
+  updatedAt            DateTime              @updatedAt
+  echoChambers         EchoChamber[]
+  ghostRecord          GhostRecord?          @relation(fields: [ghostRecordId], references: [id])
+  ghostRecordId        String?               @unique
+  invisibleTransaction InvisibleTransaction?
+  overwrittenLegacy    OverwrittenLegacy[]
+  unstableFrequency    UnstableFrequency?    @relation(fields: [unstableFrequencyId], references: [id])
+  unstableFrequencyId  String?
+}
+
+model InvisibleTransaction {
+  id                 String           @id
+  createdAt          DateTime
+  updatedAt          DateTime         @updatedAt
+  artificialPotato   ArtificialPotato @relation(fields: [artificialPotatoId], references: [id])
+  artificialPotatoId String           @unique
+}
+
+model EchoChamber {
+  id                 String           @id
+  createdAt          DateTime
+  updatedAt          DateTime         @updatedAt
+  artificialPotatoId String
+  glitchRegistries   GlitchRegistry[]
+  schrodingerUser    SchrodingerUser  @relation(fields: [schrodingerUserId], references: [id])
+  schrodingerUserId  String           @unique
+  verifier           ArtificialPotato @relation(fields: [artificialPotatoId], references: [id])
+}

@@ -1,0 +1,12 @@
+.DS_Store
+Thumbs.db
+
+.idea
+.vscode
+
+dist
+node_modules
+
+isolate-*.log
+processed.txt
+yarn-error.log

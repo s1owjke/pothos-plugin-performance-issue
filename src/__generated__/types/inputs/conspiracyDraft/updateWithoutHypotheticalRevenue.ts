@@ -1,0 +1,24 @@
+import { builder } from "src/builder";
+
+import { GlitchRegistryUpdateRelationWithoutConspiracyDrafts } from "../glitchRegistry/updateRelationWithoutConspiracyDrafts";
+import { ThresholdManifestUpdateRelationWithoutConspiracyDrafts } from "../thresholdManifest/updateRelationWithoutConspiracyDrafts";
+import { VortexReportUpdateRelationWithoutConspiracyDrafts } from "../vortexReport/updateRelationWithoutConspiracyDrafts";
+
+export const ConspiracyDraftUpdateWithoutHypotheticalRevenue = builder.inputRef<any>("ConspiracyDraftUpdateWithoutHypotheticalRevenue").implement({
+  fields: (t) => ({
+    createdAt: t.field({ type: "DateTime", required: false }),
+    updatedAt: t.field({ type: "DateTime", required: false }),
+    glitchRegistry: t.field({
+      type: GlitchRegistryUpdateRelationWithoutConspiracyDrafts,
+      required: false,
+    }),
+    thresholdManifest: t.field({
+      type: ThresholdManifestUpdateRelationWithoutConspiracyDrafts,
+      required: false,
+    }),
+    vortexReport: t.field({
+      type: VortexReportUpdateRelationWithoutConspiracyDrafts,
+      required: false,
+    }),
+  }),
+});

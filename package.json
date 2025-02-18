@@ -1,0 +1,31 @@
+{
+  "name": "pothos-plugin-performance-issue",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "rm -rf dist && tsc && tsc-alias",
+    "start": "node --prof ./dist/index.js",
+    "process-profile": "node --prof-process isolate-*.log > processed.txt",
+    "lint": "yarn biome check",
+    "lint:fix": "yarn biome check --write",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.2.1",
+    "@pothos/core": "4.3.0",
+    "@pothos/plugin-prisma": "4.4.0",
+    "graphql": "^16.10.0",
+    "graphql-scalars": "^1.24.1"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.2",
+    "@types/node": "^20.12.7",
+    "concurrently": "^9.1.2",
+    "prisma": "^6.2.1",
+    "tsc-alias": "^1.8.10",
+    "typescript": "^5.4.5"
+  },
+  "prisma": {
+    "schema": "db/schema.prisma"
+  }
+}

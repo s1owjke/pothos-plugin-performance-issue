@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2023"],
+    "module": "CommonJS",
+    "noUncheckedIndexedAccess": true,
+    "outDir": "./dist",
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "ES2023",
+    "paths": {
+      "src/*": ["./src/*"]
+    }
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules"]
+}
