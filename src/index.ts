@@ -21,6 +21,10 @@ import { buildSchema } from "./schema";
     console.log(`Schema build time: ${((Date.now() - startTime) / 1000).toFixed(3)} sec`);
     console.log(`Memory usage after schema build: ${JSON.stringify(reportMemoryUsage())}`);
 
+    // @ts-ignore
+    global.gc();
+    console.log(`Memory usage after garbage collector: ${JSON.stringify(reportMemoryUsage())}`);
+
     process.exit(0);
   } catch (error) {
     console.error(error);

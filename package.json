@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "rm -rf dist && tsc && tsc-alias",
-    "start": "node --prof ./dist/index.js",
+    "start": "node --prof --expose-gc ./dist/index.js",
     "process-profile": "node --prof-process isolate-*.log > processed.txt",
     "lint": "yarn biome check",
     "lint:fix": "yarn biome check --write",
