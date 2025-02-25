@@ -77,10 +77,10 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@pothos/core@4.3.0":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@pothos/core/-/core-4.3.0.tgz#169fbd67c98a308b4a424d6c8f75401802a936fd"
-  integrity sha512-i4nyI8wSCjxdHUomqQ2K3FH0Glklomfv4tJNifQVU9lPtQKoKaS69VxGv+fru0HAZzb1eC1XPEPN3XPCYcvZ7Q==
+"@pothos/core@4.4.1":
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/@pothos/core/-/core-4.4.1.tgz#8da0e512d9c76886cdf07718a10302b25a34af45"
+  integrity sha512-Sj8Sl5JfW7CYgVZB6Je4u3Nl1JRXNB/mzvtm7bjnFy/OCMHg1nKT/jLf32qa4rNijcKT66D2SJ6q19iBFsSOQw==
 
 "@pothos/plugin-prisma@4.4.0":
   version "4.4.0"
@@ -88,11 +88,6 @@
   integrity sha512-TlXJ8QVOihpPbJGGHwOv2MUFv61xHU2xgGyTVp7KWNLQ6hzP9RH3nSQY7H1pNLOYR5wK+RyREJcaswVNwtxuqw==
   dependencies:
     "@prisma/generator-helper" "^6.0.0"
-
-"@pothos/plugin-simple-objects@4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@pothos/plugin-simple-objects/-/plugin-simple-objects-4.1.0.tgz#05014db96f84641fce3e55e1165a68a15e619873"
-  integrity sha512-R4u3Hnd6btWt1XHG3bgBa463XbDgH380GRWg88FMrDfoqqkB1EI02gsWgmASqHHJgFI35V9Tc62loGy2XpTUyA==
 
 "@prisma/client@^6.2.1":
   version "6.3.1"
